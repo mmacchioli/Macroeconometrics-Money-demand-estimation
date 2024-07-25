@@ -1,16 +1,9 @@
 # Macroeconometrics-Money-Demand-estimation
 This project employs advanced macroeconometric techniques to estimate the Money Demand in Argentina using Vector Error Correction Models (VECM) and Gibbs Sampling analysis.
+
 ####Table of Contents
-•	Objectives
-•	Component
-•	Operation
-•	Execution context
-•	Benchmark plan
-•	Metrics
-•	Results
-•	Prediction
-•	Application
-•	To do
+![image](https://github.com/user-attachments/assets/228622ef-43a4-4383-b29b-4a7731286c8f)
+
 
 ##Objectives The purpose of this job is to analyse the Money Demand for Argentina during the period 1997-2023, in particular to estimate the elasticity to GDP, the interest rate and the effect of expectation about exchange rate devaluation in Money Demand. In order to advance with the analysis it will apply a Vector Error Correction Model (VECM) and a Markov-Switching model following the Gibbs-Sampling estrategy. 
 
