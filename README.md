@@ -46,6 +46,8 @@ In order to make inferences about the contribution of different variables to mon
 
 ![image](https://github.com/user-attachments/assets/7bee57b1-f1e1-4a73-b776-d27fdf7d47af)
 
+Variance Decomposition
+
 ![image](https://github.com/user-attachments/assets/f04f1bf8-d7cc-40f7-882d-55bb7c59e4fc)
 
 Conclusion
