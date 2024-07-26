@@ -1,136 +1,54 @@
 # Macroeconometrics-Money-Demand-estimation
+
+Macroeconometrics-Money-Demand-Estimation
 This project employs advanced macroeconometric techniques to estimate the Money Demand in Argentina using Vector Error Correction Models (VECM) and Gibbs Sampling analysis.
 
-####Table of Contents
-![image](https://github.com/user-attachments/assets/228622ef-43a4-4383-b29b-4a7731286c8f)
+Table of Contents
+Objectives
+
+Estimation
+
+Metrics
+
+Results
+
+Prediction
+
+Objectives
+The purpose of this project is to analyze the Money Demand for Argentina during the period 1997-2023, particularly to estimate the elasticity to GDP, the interest rate, and the effect of expectations about exchange rate devaluation on Money Demand. In order to advance the analysis, it will apply a Vector Error Correction Model (VECM) and a Markov-Switching model following the Gibbs Sampling strategy.
+
+Estimation Strategy:
+First step: We calculate a multivariate regression with OLS to estimate the real exchange rate as a response to fundamental economic variables such as Expenditures/GDP, Debt/GDP, Productivity, and foreign price indices.
+
+![image](https://github.com/user-attachments/assets/4e4a14f8-0e0f-4280-be1a-ea3d6f871b07)
+
+Next, we estimate the linear projection on trend values regarding fundamental variables. We take the trend values applying the Hodrick-Prescott filter.
+![image](https://github.com/user-attachments/assets/10e699d9-85f1-4222-b6b2-35e7e537c9dc)
+
+So, we can identify the observed real exchange rate and equilibrium exchange rate estimated upon the fundamental variables in their trend values, getting the Dev variable as the difference between the equilibrium exchange rate and the observable values.
+
+![image](https://github.com/user-attachments/assets/13d1f34a-8c1e-45cd-83d8-bd41514118ca)
+
+![image](https://github.com/user-attachments/assets/9cd79c8b-91c9-4795-8f20-8bcaaf3d20ce)
+
+Second step: Estimating a VECM to predict the long-term relation among variables. Previously, we identify the integration order and the Johansen test supports the hypothesis of 1 cointegration relation.
+
+![image](https://github.com/user-attachments/assets/5b1222c0-fc9d-4152-9403-e3a0ad723ba5)
+
+![image](https://github.com/user-attachments/assets/deba6fad-a969-4c7a-9ec7-c1c65651b4ee)
+
+Impulse Responses and Variance Decomposition:
+
+![image](https://github.com/user-attachments/assets/b85a5e68-9e20-4bce-ba1c-d83ebbccb26f)
 
 
-##Objectives The purpose of this job is to analyse the Money Demand for Argentina during the period 1997-2023, in particular to estimate the elasticity to GDP, the interest rate and the effect of expectation about exchange rate devaluation in Money Demand. In order to advance with the analysis it will apply a Vector Error Correction Model (VECM) and a Markov-Switching model following the Gibbs-Sampling estrategy. 
+In order to make inferences about the contribution of different variables to money demand, we estimate the impulse-responses following different Cholesky orders.
+
+![image](https://github.com/user-attachments/assets/7bee57b1-f1e1-4a73-b776-d27fdf7d47af)
+
+![image](https://github.com/user-attachments/assets/7ca55656-69fe-4662-88b6-c65308cdb75b)
 
 
-Response time: it is the total amount of time that a component takes to perform a task or operation, i.e. to respond to a request with a given input. A response time model over a component C is defined as a function Rc(E,I)=r, being E a set of measured execution context features E=[E1,...Ee] (such as CPU cores, Network type, etc), I a set of measured input parameter features I=[I1,...Ii] (input size in bytes, etc), and r the estimated response time.
-Accuracy: it is a measure of the quality of the component output results. It has different meanings depending on the required functionality. For instance, in classification problems, it is the statistical measure of how well a classifier, such as a face detector, correctly identifies or excludes a condition. In optimization problems, it is also known as Optimality and is usually measured as a ratio between the obteined output solution value and the optimal known value. In most cases, accuracy do not depends on execution context features, in contrast to response time. Therefore, an accuracy model over a component C is defined as a function Ac(I)=a, being I a set of measured input parameter features I=[I1,...Ii], and a the estimated accuracy.
-Such models are known as empirical performance models (EPM), and are useful in a variety of practical contexts:
 
-Algoritm selection and configuration: performance models can be used to dynamically select the best from a given set of algorithm configurations, depending on the problem instance and hardware characteristics.
-Service selection and composition: when several Web services implements the same functionality, performance models are a good criteria for choosing the best candidate among them. Even at runtime, service providers can be switched if context and input parameter conditions change.
-Task scheduling in mobile grids: given a set of tasks to be assigned among a set of devices, performance models can obtain an accurate measure of the response time of each task over each device in order to minimize the makespan.
-Others.
-##Workflow overview
 
-The method consist of the following activities:
-
-Benchmark (or testing): obtain empirical data performing a benchmark plan over a set of components.
-Prediction: use the collected data for building and evaluating prediction models.
-Application: use the models in some practical context: algoritm configuration, service selection, job scheduling, etc.
-Method workflow
-
-##Benchmark
-
-The benchmark activity is supported by the AndroidMeter library. It is an Android library that automatically performs benchmark plans, i.e., a systemathic execution and measure of component operations with a set of inputs and varying execution conditions.
-
-Examples using AndroidMeter are included in the following Android application projects:
-
-Examples-Android-Meter: it includes basic benchmark examples in domains like matrix multiplication and algoritms for solving the Knapsack problem.
-Evaluation-of-Face-Detection-Services: it extends AndroidMeter for benchmarking Android Services and Web Services that perform face detection over images.
-The core concepts that describe the AndroidMeter framework are explained below:
-
-###Component A component is an individual runtime software entity that provides services (a set of related functions and data) through an specific interface (API). The tool focus on three kind of components:
-
-Object instances, components that reside on the application memory space.
-Android Services, background processes that reside on the same device and are accessed via Intents, the interprocess communication mechanism implemented by Android OS.
-Web Services, remote components that reside outside the device and are accessed via Web communication protocols, like HTTP.
-The tool use a simplyfied component representation defined by the Component interface. The execute method must implement the component behaviour as a blocking function.
-
-Example of an Object instance component:
-
-Component<Integer[], Integer> sum = new Component<Integer[], Integer>() {
-
-	@Override
-	public String getName() {
-		return "Sum";
-	}
-
-	@Override
-	public Integer execute(Integer[] input) {
-		int output = 0;
-		for (int element : input)
-			output += element;
-		return output;
-	}
-};
-Android and Web Services components can be easily integrated by implementing AndroidServiceClient and WebServiceClient classes respectively. They extends the Component interface.
-
-Components
-
-###Operation: An operation, task or job is a unit of work performed by a component. An operation is requested by calling the execute method of the component with a given Input object. When the operation is done, an Output object is returned.
-
-Input: object that encapsulates the input parameters of the requested component operation. This object may include data and configuration parameters.
-Output: object that encapsulates the response of the operation.
-###Execution context The execution context is the environment where the components reside. Since environment conditions vary dynamically, operation performance also vary.
-
-###Benchmark plan A benchmark plan is an object instance of the BenchmarkPlan class that defines a systemathic execution of operations and measures over them. A benchmark plan is composed by:
-
-a set of components,
-a set of input objects,
-and a set of metrics that carry out the measures.
-An Executor object executes benchmark plans and stores the measured values on a Result object instance. The following pseudo-code describe the execution sequence of operations and measures:
-
-class Executor {
-	...
-	Results executeBenchmarkPlan(BenchmarkPlan plan){
-		Results results=new Results();
-		for(GlobalMetric metric : plan.getGlobalMetrics()){
-			Measure measure = metric.calculate(plan);
-			results.addGlobalMeasure(measure);
-		}
-		for(Input input : plan.getInputs()){
-			for(InputMetric metric : plan.getInputMetrics()){
-				Measure measure = metric.calculate(input);
-				results.addInputMeasure(measure);
-			}
-		}
-		for(Component component : plan.getComponents()){
-			for(ComponentMetric metric : plan.getComponentMetrics()){
-				Measure measure = metric.calculate(component);
-				results.addComponentMeasure(measure);
-			}
-		}
-		for(Input input : plan.getInputs()){
-			for(Component component : plan.getComponents()){
-				for(OperationMetric metric : plan.getOperationMetrics()){
-					metric.onBeforeOperation(input,component);
-				}
-				Output output=component.execute(input);
-				for(OperationMetric metric : plan.getOperationMetrics()){
-					Measure measure = metric.calculate(output);
-					results.addOperationMeasure(measure);
-				}
-			}
-		}
-		return results;
-	}
-}
-###Metrics They are the units of code that computes a measure or feature value from some element. The tool distinguish 4 kind of metrics depending on the measured element:
-
-Global metrics compute static context properties, i.e., execution context properties that remain static during the plan execution, such as the device model, CPU architecture, number of CPU cores, memory size, etc.
-Input metrics compute input properties that depends on the problem domain. For instance, in face detection on images, some input properties are the image name, size, color contrast, file format, etc.
-Component metrics compute component properties such as its name, type, location, etc.
-Operation metrics compute three kind of properties:
-Output properties: these are characteristics of the operation result, such as its size, quality, etc. Like input features, they depend on the problem domain. In face detection for instance, the output is a vector with the location of the detected faces, therefore, an output property may be the size of this vector, i.e., the amount of detected faces.
-Dynamic context properties: these are characteristics of the execution environment that may vary from operation to operation, like the CPU usage, number of runnning processes, connection type, device location, etc.
-Runtime properties: this are the performance measures of interest to predict, that vary from operation to operation, such as response time, consumed battery, result accuracy, operation executed with error or not, etc.
-###Results It is the object that stores the measured data and exports it into a CSV file for its latter processing.
-
-##Prediction
-
-##Application
-
-##To do
-
-More metrics
-Export results into several files: SQLite, CVSs, etc.
-Store results in a DaaS (Firebase for example)
-Load simulation
-Incremental prediction models in Android
-Distributed prediction models in Android
+Conclusion
