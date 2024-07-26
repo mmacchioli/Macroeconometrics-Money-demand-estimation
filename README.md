@@ -1,7 +1,7 @@
 # Macroeconometrics-Money-Demand-estimation
 
 Macroeconometrics-Money-Demand-Estimation
-This project employs advanced macroeconometric techniques to estimate the Money Demand in Argentina using Vector Error Correction Models (VECM) and Gibbs Sampling analysis.
+This project employs advanced macroeconometric techniques to estimate the Money Demand in Argentina using Vector Error Correction Models (VECM).
 
 Table of Contents
 Objectives
