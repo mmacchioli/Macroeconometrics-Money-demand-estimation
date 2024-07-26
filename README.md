@@ -46,9 +46,8 @@ In order to make inferences about the contribution of different variables to mon
 
 ![image](https://github.com/user-attachments/assets/7bee57b1-f1e1-4a73-b776-d27fdf7d47af)
 
-![image](https://github.com/user-attachments/assets/7ca55656-69fe-4662-88b6-c65308cdb75b)
-
-
-
+![image](https://github.com/user-attachments/assets/f04f1bf8-d7cc-40f7-882d-55bb7c59e4fc)
 
 Conclusion
+
+The impulse response analysis predicts a negative reaction between the expected exchange rate and Money Demand, aligning with economic theory. Additionally, the relationship between the interest rate and GDP follows the traditional pathway with respect to Money Demand. Finally, the variance decomposition reveals that the exchange rate expectation is the most significant predictor of Money Demand behavior.
